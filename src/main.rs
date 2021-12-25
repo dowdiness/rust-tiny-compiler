@@ -21,6 +21,12 @@ struct Token {
     value: String,
 }
 
+impl PartialEq for Token {
+    fn eq(&self, other: &Self) -> bool {
+        self.r#type == other.r#type && self.value == other.value
+    }
+}
+
 impl PartialEq<TokenType> for Token {
     fn eq(&self, other: &TokenType) -> bool {
         self.r#type == *other
