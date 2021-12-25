@@ -150,25 +150,48 @@ fn tokenizer(input: &str) -> Vec<Token> {
     return tokens;
 }
 
+#[allow(dead_code)]
+fn parser() {
+    todo!();
+}
+
+#[allow(dead_code)]
+fn traverser() {
+    todo!();
+}
+
+#[allow(dead_code)]
+fn code_generator() {
+    todo!();
+}
+
+#[allow(dead_code)]
+fn compiler() {
+    todo!();
+}
+
 fn main() {
     let tokens = tokenizer("(add 2 (subtract 4 2))");
     println!("{:?}", tokens);
 }
 
-
-#[test]
-fn token() {
-    let input  = "(add 2 (subtract 4 2))";
-    let tokens = vec!(
-        Token { r#type: TokenType::Parenthesis, value: String::from("(")},
-        Token { r#type: TokenType::Name, value: String::from("add")},
-        Token { r#type: TokenType::Number, value: String::from("2")},
-        Token { r#type: TokenType::Parenthesis, value: String::from("(")},
-        Token { r#type: TokenType::Name, value: String::from("subtract")},
-        Token { r#type: TokenType::Number, value: String::from("4")},
-        Token { r#type: TokenType::Number, value: String::from("2")},
-        Token { r#type: TokenType::Parenthesis, value: String::from(")")},
-        Token { r#type: TokenType::Parenthesis, value: String::from(")")},
-    );
-    assert_eq!(tokenizer(input), tokens);
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_tokenizer() {
+        let input  = "(add 2 (subtract 4 2))";
+        let tokens = vec!(
+            Token { r#type: TokenType::Parenthesis, value: String::from("(")},
+            Token { r#type: TokenType::Name, value: String::from("add")},
+            Token { r#type: TokenType::Number, value: String::from("2")},
+            Token { r#type: TokenType::Parenthesis, value: String::from("(")},
+            Token { r#type: TokenType::Name, value: String::from("subtract")},
+            Token { r#type: TokenType::Number, value: String::from("4")},
+            Token { r#type: TokenType::Number, value: String::from("2")},
+            Token { r#type: TokenType::Parenthesis, value: String::from(")")},
+            Token { r#type: TokenType::Parenthesis, value: String::from(")")},
+        );
+        assert_eq!(tokenizer(input), tokens);
+    }
 }
