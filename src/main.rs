@@ -1,8 +1,9 @@
 use compiler::tokenizer::*;
-// use compiler::parser::parser;
+use compiler::parser::parser;
 
+// todo "(add 2 (subtract 4 2))" のように()がネストすると動かない。
 fn main() {
-    let tokens = tokenizer("(add 2 (subtract 4 2))");
-    // let ast = parser(&mut vec!(Token::new(TokenType::Number, "22")));
-    println!("{:?}", tokens);
+    let tokens = tokenizer("(add 2 4)");
+    let ast = parser(tokens);
+    println!("{:?}", ast);
 }
