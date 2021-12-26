@@ -78,13 +78,13 @@ fn walk(tokens: &[Token], current: usize) -> (AstNode, usize) {
       };
 
       current += 1;
-      token = tokens.get(current).unwrap();
+      token = &tokens[current];
 
       while token.r#type != TokenType::Parenthesis ||
       (token.r#type == TokenType::Parenthesis && token.value != ")") {
         node.params.as_mut().unwrap().push(walk(tokens, current).0);
         current += 1;
-        token = tokens.get(current).unwrap();
+        token = &tokens[current];
       }
 
       current += 1;
