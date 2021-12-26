@@ -41,7 +41,7 @@ pub fn parser(tokens: Vec<Token>) -> Ast {
 fn walk(tokens: &[Token], current: usize) -> (AstNode, usize) {
   let mut current = current;
   let mut token = &tokens[current];
-  println!("Begginng of walk: {:?} {:?}", token, current);
+  println!("Begginng of walk: {:?}, Current {:?}", token, current);
 
   if token.r#type == TokenType::Number {
       current += 1;
@@ -71,7 +71,7 @@ fn walk(tokens: &[Token], current: usize) -> (AstNode, usize) {
       // Skip Parenthesis type Token to Name type Token
       current += 1;
       token = &tokens[current];
-      println!("Begginng of CallExpressions: {:?} {:?}", token, current);
+      println!("Begginng of CallExpressions: {:?}, Current {:?}", token, current);
 
       let mut node = AstNode {
           r#type: AstType::CallExpression,
@@ -92,18 +92,15 @@ fn walk(tokens: &[Token], current: usize) -> (AstNode, usize) {
         node.params.as_mut().unwrap().push(walk(tokens, current).0);
         current += 1;
         token = &tokens[current];
-        if token.r#type == TokenType::Parenthesis && token.value == ")" {
-          break
-        }
       }
-      println!("End of CallExpression: {:?} {:?}", &tokens[current], current);
+      println!("End of CallExpression: {:?}, Current {:?}", &tokens[current], current);
 
       // Skip closing parenthesis
       current += 1;
       return (node, current);
   }
 
-  println!("unreachable: {:?} {:?}", token, current);
+  println!("unreachable: {:?}, Current {:?}", token, current);
 
   unreachable!();
 }
